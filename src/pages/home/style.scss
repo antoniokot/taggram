@@ -1,6 +1,6 @@
 .home-container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -8,6 +8,7 @@
   background-color: #E5E5E5;
 
   .top-bar {
+    width: 100%;
     height: 54px;
 
     display: flex;
@@ -17,31 +18,43 @@
 
     background-color: #FFFFFF;
     border-bottom: 1px solid #DBDBDB;
+    
+    margin-right: 108px;
 
-    .profile-data {
+    .top-bar-content {
+
+      width: 932px;
 
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
+      justify-content: space-between;
 
-      > span {
+      margin: auto;
+      
+      .profile-data {
+  
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+  
+        > span {
+          font-family: Arial;
+          font-size: 14px;
+          font-weight: 400;
 
-        font-family: Arial;
-        font-size: 14px;
-        font-weight: 400;
-
-        margin-right: 12px;
+          color: #262626;
+  
+          margin-right: 12px;
+        }
+  
+        .avatar-img {
+          width: 22px;
+          height: 22px;
+  
+          border-radius: 22px;
+        }
       }
-
-      .avatar-img {
-        width: 22px;
-        height: 22px;
-
-        border-radius: 22px;
-      }
-
-      margin-right: 108px;
     }
   }
 
@@ -108,15 +121,74 @@
             font-family: Arial;
             font-size: 14px;
             font-weight: 700;
+
+            color: #262626;
+
+            margin-bottom: 2px;
           }
   
           .owner-location {
             font-family: Arial;
             font-size: 12px;
             font-weight: 400;
+
+            color: #262626;
           }
         }
       }
     }
+  }
+
+  .more {
+    width: 932px;
+
+    margin: {
+      top: 48px;
+      left: auto;
+      right: auto;
+    }
+
+    border-top: 1px solid #EFEFEF;
+
+    > span {
+      font-family: Arial;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 30px;
+
+      color: #8E8E8E;
+    }
+
+    .more-posts {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      margin-top: 20px;
+
+      .related-img {
+        width: 280px;
+        height: 280px;
+
+        margin-bottom: 46px;
+      }
+
+      .related-img:nth-child(3n+2) {
+        margin: {
+          left: 46px;
+          right: 46px;
+        }
+      }
+    }
+  }
+
+  footer {
+
+    margin: auto;
+
+    margin: {
+      top: 2px;
+      bottom: 60px;
+    };
   }
 }
