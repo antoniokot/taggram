@@ -7,7 +7,7 @@ import api from '../../services/api';
 import CommentCard from './CommentCard/index';
 
 import logo from '../../utils/images/Taggram.svg';
-import usuario from '../../utils/images/usuario.svg';
+import usuario from '../../utils/images/usuario_default.png';
 import post from '../../utils/images/fiorde.jpg';
 import tagview from '../../utils/images/tagview.svg';
 
@@ -92,11 +92,26 @@ export default function Home() {
             </div>
           </div>
 
-          {
-            post ? post.comments.map(c => (
-              <CommentCard />
-            )) : null
-          }
+          <div className="comments-area">
+            {
+              post ? post.comments.map(c => (
+                <CommentCard
+                  commentId={c.uuid}
+                  username={c.user.username}
+                  avatar={c.user.avatar}
+                  message={c.message}
+                  hasLiked={c.has_liked}
+                  createdAt={c.created_at}
+                  likeCount={c.like_count}
+                />
+              )) : null
+            }
+          </div>
+
+          <div className="other-infos">
+            <span className="comments-number">{post ? post.comments.length : 0} comentários</span>
+            <span className="post-date">{post ? post.created_at : ""}</span>
+          </div>
         </div>
       </main>
 
@@ -105,8 +120,8 @@ export default function Home() {
 
         <div className="more-posts">
           {
-            related ? related.map(p => (
-              <img className="related-img" src={p.photo} alt="Related post" />
+            related ? related.map(r => (
+              <img className="related-img" src={r.photo} alt="Related post" />
             )) : null
           }
         </div>

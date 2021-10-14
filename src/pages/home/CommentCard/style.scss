@@ -1,0 +1,86 @@
+.comment-container {
+  width: 334px;
+
+  display: flex;
+  flex-direction: row;
+
+  .comment-img {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 100%;
+
+    margin: {
+      top: 12px;
+      bottom: 40px;
+      left: 16px;
+      right: 18px;
+    };
+  }
+
+  .comment-body {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    .comment-content {
+
+      font-family: Arial;
+      font-size: 14px;
+      font-weight: 400;
+
+      color: #262626;
+
+      margin-top: 12px;
+
+      .comment-username {
+        font-family: Arial;
+        font-size: 14px;
+        font-weight: 700;
+
+        color: #262626;
+
+        margin-right: 4px;
+      }      
+    }
+
+    .comment-details {
+      display: flex;
+      flex-direction: row;
+
+      margin: {
+        top: 16px;
+        bottom: 20px;
+      }
+      .comment-created-at {
+        font-family: Arial;
+        font-size: 14px;
+        font-weight: 400;
+
+        color: #8E8E8E;
+
+        margin-right: 12px;
+      }
+
+      .comment-likes-number {
+        font-family: Arial;
+        font-size: 14px;
+        font-weight: 700;
+
+        color: #8E8E8E;
+      }
+    }
+  }
+
+  .comment-like-button {
+    width: 12px;
+    height: 10px;
+
+    margin: {
+      top: 21px;
+      left: 16px;
+      right: 16px;
+    };
+  }
+}

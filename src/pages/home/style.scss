@@ -136,6 +136,54 @@
           }
         }
       }
+
+      .comments-area {
+        width: 334px;
+        height: 449px;
+
+        overflow-x: auto;
+      }
+
+      .comments-area::-webkit-scrollbar {
+        width: 0px;
+      }
+
+      .other-infos {
+        width: 334px;
+        height: 72px;
+
+        display: flex;
+        flex-direction: column;
+
+        border-top: 1px solid #EFEFEF;
+
+        .comments-number {
+          font-family: Arial;
+          font-size: 14px;
+          font-weight: 700;
+
+          color: #262626;
+
+          margin: {
+            top: 16px;
+            bottom: 4PX;
+            left: 16px;
+          };
+        } 
+
+        .post-date {
+          font-family: Arial;
+          font-size: 10px;
+          font-weight: 400;
+
+          color: #8E8E8E;
+
+          margin: {
+            bottom: 16PX;
+            left: 16px;
+          };
+        }
+      }
     }
   }
 
