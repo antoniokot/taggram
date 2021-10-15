@@ -7,7 +7,7 @@ import api from '../../services/api';
 import CommentCard from './CommentCard/index';
 
 import logo from '../../utils/images/Taggram.svg';
-import usuario from '../../utils/images/usuario_default.png';
+import noAvatar from '../../utils/images/usuario_default.png';
 import post from '../../utils/images/fiorde.jpg';
 import tagview from '../../utils/images/tagview.svg';
 
@@ -20,7 +20,6 @@ export default function Home() {
   useEffect(() => {
     getRandomUser();
     getRandomPost();
-
   }, []);
 
   async function getRandomUser() {
@@ -43,7 +42,6 @@ export default function Home() {
         try {
           let responseRandomPost = await api.get(`/post?username=${responseRandomUser.data.username}`);
           
-
           if(responseRandomPost.data) {
             setPost(responseRandomPost.data);
 
@@ -74,7 +72,7 @@ export default function Home() {
 
           <div className="profile-data">
             <span>{user ? user.username : ""}</span>
-            <img className="avatar-img" src={ user ? user.avatar ? user.avatar : usuario : usuario} alt="Avatar" />
+            <img className="avatar-img" src={ user ? user.avatar ? user.avatar : noAvatar : noAvatar} alt="Avatar" />
           </div>
         </div>
       </div>
@@ -84,7 +82,7 @@ export default function Home() {
 
         <div className="comments">
           <div className="owner-description">
-            <img className="owner-img" src={post ? post.user.avatar ? post.user.avatar : usuario : usuario} alt="User avatar" />
+            <img className="owner-img" src={post ? post.user.avatar ? post.user.avatar : noAvatar : noAvatar} alt="User avatar" />
 
             <div className="owner-info">
               <span className="owner-name">{post ? post.user.username : ""}</span>
@@ -120,9 +118,11 @@ export default function Home() {
 
         <div className="more-posts">
           {
-            related ? related.map(r => (
-              <img className="related-img" src={r.photo} alt="Related post" />
-            )) : null
+            related ? related.map(r =>
+              r.comment_count >= 3 ? (
+                <img className="related-img" src={r.photo} alt="Related post" />
+              ) : null
+            ) : null
           }
         </div>
       </div>

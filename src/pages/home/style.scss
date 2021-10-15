@@ -71,9 +71,17 @@
       right: auto
     };
 
+    border: 1px solid #DBDBDB;
+    border-radius: 3px;
+
     .post-img {
       width: 598px;
       height: 598px;
+
+      border: {
+        top-left-radius: 3px;
+        bottom-left-radius: 3px;
+      }
     }
 
     .comments {
@@ -81,6 +89,11 @@
       height: 598px;
 
       background-color: #FFFFFF;
+
+      border: {
+        top-right-radius: 3px;
+        bottom-right-radius: 3px;
+      }
 
       .owner-description {
         width: 334px;
@@ -156,6 +169,8 @@
         flex-direction: column;
 
         border-top: 1px solid #EFEFEF;
+
+        overflow: hidden;
 
         .comments-number {
           font-family: Arial;

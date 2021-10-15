@@ -2,6 +2,8 @@ import './style.scss';
 
 import react, { useState, useEffect } from 'react';
 
+import useModal from '../../../hooks/useModal';
+
 import api from '../../../services/api';
 
 import usuario from '../../../utils/images/usuario_default.png';
@@ -10,11 +12,10 @@ import dislike from '../../../utils/images/dislike.svg';
 
 export default function CommentCard(props) {
 
+  const { successModal, errorModal } = useModal();
   const [liked, setLiked] = useState(props.hasLiked);
 
   function handleLike() {
-    setLiked(!liked);
-
     if(!liked)
       addLike();
     else
@@ -23,17 +24,21 @@ export default function CommentCard(props) {
 
   async function addLike() {
     try {
-      await api.post(`/comments/${props.commentId}/like`);
+      await api.post(`/comments/${props.commentId}/like`, { username: props.username });
+      setLiked(!liked);
+
     } catch(err) {
-      console.error(err);
+      errorModal("Não foi possível curtir comentário, tente novamente");
     }
   }
 
   async function removeLike() {
     try {
-      await api.post(`/comments/${props.commentId}/unlike`);
+      await api.post(`/comments/${props.commentId}/unlike`, { username: props.username });
+      setLiked(!liked);
+
     } catch(err) {
-      console.error(err);
+      errorModal("Não foi possível descurtir comentário, tente novamente");
     }
   }
 
