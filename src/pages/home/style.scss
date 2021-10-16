@@ -65,14 +65,15 @@
     display: flex;
     flex-direction: row;
 
+    
+    border: 1px solid #DBDBDB;
+    border-radius: 3px;
+
     margin: {
       top: 20px;
       left: auto;
       right: auto
     };
-
-    border: 1px solid #DBDBDB;
-    border-radius: 3px;
 
     .post-img {
       width: 598px;
@@ -108,18 +109,17 @@
           width: 32px;
           height: 32px;
 
+          border-radius: 32px;
+
           margin: {
             top: 20px;
             bottom: 21px;
             left: 16px;
             right: 16px;
           };
-
-          border-radius: 32px;
         }
 
         .owner-info {
-
           flex: 1;
 
           display: flex;
@@ -204,14 +204,14 @@
 
   .more {
     width: 932px;
+    
+    border-top: 1px solid #EFEFEF;
 
     margin: {
       top: 48px;
       left: auto;
       right: auto;
     }
-
-    border-top: 1px solid #EFEFEF;
 
     > span {
       font-family: Arial;
@@ -246,12 +246,11 @@
   }
 
   footer {
-
-    margin: auto;
-
     margin: {
       top: 2px;
       bottom: 60px;
+      left: auto;
+      right: auto;
     };
   }
 }

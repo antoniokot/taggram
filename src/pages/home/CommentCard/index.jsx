@@ -42,28 +42,55 @@ export default function CommentCard(props) {
     }
   }
 
+  // Além de retornar a data de criação, valida para ver se a data passada não "está no futuro", um dia a frente, por exemplo
+  function getCreatedAt() {
+
+    let createdAt = props.createdAt.substring(0,10).split('-');
+
+    let ano = createdAt[0];
+    let mes = createdAt[1];
+    let dia = createdAt[2];
+
+    let now = new Date();
+    let posted = new Date(ano, mes-1, dia);
+
+    let timeDiff = now - posted;
+
+    if(timeDiff < 0)
+      return "";
+
+    let diffDays = timeDiff / (1000 * 3600 * 24);
+
+    if(diffDays < 1)
+      return Math.floor(diffDays * 24) + "h";
+    else
+      return Math.floor(diffDays) + "d";
+  }
+
   return(
-    <div className="comment-container">
-      <img className="comment-img" src={props.avatar ? props.avatar : usuario} alt="Comment User avatar" />
+    getCreatedAt() != "" ? (
+      <div className="comment-container">
+        <img className="comment-img" src={props.avatar ? props.avatar : usuario} alt="Comment User avatar" />
 
-      <div className="comment-body">
-        <div className="comment-content">
-          <span className="comment-username">{props.username}</span>
-          {props.message}
+        <div className="comment-body">
+          <div className="comment-content">
+            <span className="comment-username">{props.username}</span>
+            {props.message}
+          </div>
+
+          <div className="comment-details">
+            <span className="comment-created-at">{getCreatedAt()}</span>
+            <span className="comment-likes-number">{liked ? props.likeCount + 1 : props.likeCount} curtidas</span>
+          </div>
         </div>
 
-        <div className="comment-details">
-          <span className="comment-created-at">{props.createdAt}</span>
-          <span className="comment-likes-number">{liked ? props.likeCount + 1 : props.likeCount} curtidas</span>
-        </div>
+        <img 
+          className="comment-like-button" 
+          src={liked ? like : dislike} 
+          alt="Like button" 
+          onClick={handleLike} 
+        />
       </div>
-
-      <img 
-        className="comment-like-button" 
-        src={liked ? like : dislike} 
-        alt="Like button" 
-        onClick={handleLike} 
-      />
-    </div>
+    ) : <></>
   );
 }

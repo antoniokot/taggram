@@ -2,16 +2,19 @@ import './style.scss';
 
 import react, { useState, useEffect } from 'react';
 
+import useModal from '../../hooks/useModal';
+
 import api from '../../services/api';
 
 import CommentCard from './CommentCard/index';
 
 import logo from '../../utils/images/Taggram.svg';
 import noAvatar from '../../utils/images/usuario_default.png';
-import post from '../../utils/images/fiorde.jpg';
 import tagview from '../../utils/images/tagview.svg';
 
 export default function Home() {
+
+  const { successModal, errorModal } = useModal();
 
   const [user, setUser] = useState(null);
   const [post, setPost] = useState(null);
@@ -52,15 +55,15 @@ export default function Home() {
                 setRelated(reponseRelated.data);
 
             } catch(err) {
-              console.error(err);
+              errorModal("Não foi possível recuperar as postagens relacionadas");
             }
           } 
         } catch(err) {
-          console.error(err);
+          errorModal("Não foi possível recuperar a postagem");
         }
       }
     } catch(err) {
-      console.error(err);
+      errorModal("Não foi possível recuperar o usuário da postagem");
     }
   }
 
@@ -94,6 +97,7 @@ export default function Home() {
             {
               post ? post.comments.map(c => (
                 <CommentCard
+                  key={c.uuid}
                   commentId={c.uuid}
                   username={c.user.username}
                   avatar={c.user.avatar}
@@ -107,7 +111,7 @@ export default function Home() {
           </div>
 
           <div className="other-infos">
-            <span className="comments-number">{post ? post.comments.length : 0} comentários</span>
+            <span className="comments-number">{document.getElementsByClassName('comment-container').length} comentários</span>
             <span className="post-date">{post ? post.created_at : ""}</span>
           </div>
         </div>
@@ -120,7 +124,7 @@ export default function Home() {
           {
             related ? related.map(r =>
               r.comment_count >= 3 ? (
-                <img className="related-img" src={r.photo} alt="Related post" />
+                <img key={r.uuid} className="related-img" src={r.photo} alt="Related post" />
               ) : null
             ) : null
           }
