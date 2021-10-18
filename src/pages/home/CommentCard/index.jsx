@@ -1,6 +1,6 @@
 import './style.scss';
 
-import react, { useState, useEffect } from 'react';
+import react, { useState } from 'react';
 
 import useModal from '../../../hooks/useModal';
 
@@ -45,26 +45,32 @@ export default function CommentCard(props) {
   // Além de retornar a data de criação, valida para ver se a data passada não "está no futuro", um dia a frente, por exemplo
   function getCreatedAt() {
 
-    let createdAt = props.createdAt.substring(0,10).split('-');
+    // Verifica para ver se a data já está no formato correto
+    if(props.createdAt.indexOf('h') > 0)
+      return props.createdAt;
 
-    let ano = createdAt[0];
-    let mes = createdAt[1];
-    let dia = createdAt[2];
-
+    let createdAt = new Date(props.createdAt);
     let now = new Date();
-    let posted = new Date(ano, mes-1, dia);
 
-    let timeDiff = now - posted;
+    // Calcula a diferença entre as datas
+    let timeDiff = now - createdAt;
 
+    // Se a diferença for negativa, a data de criação do comentário "está no futuro"
     if(timeDiff < 0)
       return "";
 
     let diffDays = timeDiff / (1000 * 3600 * 24);
 
+    if(diffDays * 24 * 60 < 1)
+      return Math.floor(diffDays * 24 * 60 * 60) + "s";
+    if(diffDays * 24 < 1) 
+      return Math.floor(diffDays * 24 * 60) + "m";
     if(diffDays < 1)
       return Math.floor(diffDays * 24) + "h";
-    else
+    if(diffDays < 7) 
       return Math.floor(diffDays) + "d";
+    else
+      return Math.floor(diffDays / 7) + "w";
   }
 
   return(

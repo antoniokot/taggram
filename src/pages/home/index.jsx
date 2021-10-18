@@ -33,7 +33,7 @@ export default function Home() {
         setUser(response.data);
 
     } catch(err) {
-      console.error(err);
+      errorModal("Não foi possível encontrar um usuário, tente novamente");
     }
   }
 
@@ -75,7 +75,7 @@ export default function Home() {
 
           <div className="profile-data">
             <span>{user ? user.username : ""}</span>
-            <img className="avatar-img" src={ user ? user.avatar ? user.avatar : noAvatar : noAvatar} alt="Avatar" />
+            <img className="avatar-img" src={user ? user.avatar ? user.avatar : noAvatar : noAvatar} alt="Avatar" />
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function Home() {
 
             <div className="owner-info">
               <span className="owner-name">{post ? post.user.username : ""}</span>
-              <span className="owner-location">{ post ? post.location.city + ", " + post.location.country : ""}</span>
+              <span className="owner-location">{post ? post.location.city + ", " + post.location.country : ""}</span>
             </div>
           </div>
 
